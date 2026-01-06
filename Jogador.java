@@ -3,13 +3,20 @@ import java.util.ArrayList;
 public abstract class Jogador extends Entidade{
    public int experiencia;
    public int nivel;
-   public int experienciaNecessaria = nivel * 100; //pra subir de nivel
+   public int experienciaNecessaria = nivel * 100;
    public ArrayList<Item> inventario;
    public String habilidades;
 
    public Jogador()
    {
       super();
+      experiencia = 0;
+      nivel = 1;
+      habilidades = "";
+   }
+   public Jogador(String nome, int vidaMaxima, int velocidade, int ataque, int defesa, int armadura)
+   {
+      super(nome, vidaMaxima, velocidade, ataque, defesa, armadura);
       experiencia = 0;
       nivel = 1;
       habilidades = "";
@@ -32,7 +39,7 @@ public abstract class Jogador extends Entidade{
 
         if (e.vidaAtual <= 0) {
             e.vidaAtual = 0;
-            ganharExperiencia(100); //tem que ver isso aqui(entidade dropar xp)
+            ganharExperiencia(100);
             return true;
         }
         return false;
