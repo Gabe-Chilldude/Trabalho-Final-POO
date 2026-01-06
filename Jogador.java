@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public abstract class Jogador extends Entidade{
    public int experiencia;
    public int nivel;
-   public int experienciaNecessaria = nivel * 100;
+   public int experienciaNecessaria = nivel * 100; //pra subir de nivel
    public ArrayList<Item> inventario;
    public String habilidades;
 
@@ -16,35 +16,32 @@ public abstract class Jogador extends Entidade{
    }
    
    public boolean agredir(Entidade e, int dano) {
-    int danoRestante;
+        int danoRestante;
 
-    if (e.armadura >= dano) {
-        e.armadura -= dano;
-        danoRestante = 0;
-    } else {
-        danoRestante = dano - e.armadura;
-        e.armadura = 0;
-    }
+        if (e.armadura >= dano) {
+            e.armadura -= dano;
+            danoRestante = 0;
+        } else {
+            danoRestante = dano - e.armadura;
+            e.armadura = 0;
+        }
 
-    if (danoRestante > 0) {
-        e.vidaAtual -= danoRestante;
-    }
+        if (danoRestante > 0) {
+            e.vidaAtual -= danoRestante;
+        }
 
-    if (e.vidaAtual <= 0) {
-        e.vidaAtual = 0;
-        ganharExperiencia(100);
-        return true;
-    }
-
-    return false;
+        if (e.vidaAtual <= 0) {
+            e.vidaAtual = 0;
+            ganharExperiencia(100); //tem que ver isso aqui(entidade dropar xp)
+            return true;
+        }
+        return false;
 }
 
    public void ganharExperiencia(int xp) {
-    experiencia += xp;
-    subirDeNivel();
+        experiencia += xp;
+        subirDeNivel();
 }
-
-
 
    public void usarItem(Item item, Entidade e)
    {
