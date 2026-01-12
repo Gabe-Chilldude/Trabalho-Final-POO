@@ -15,17 +15,22 @@ public abstract class Entidade {
       ataque = 1;
       armadura = 0;
    }
+   public Entidade(String nome, int vidaMaxima, int velocidade, int ataque, int defesa, int armadura)
+   {
+      this.nome = nome;
+      this.vidaMaxima = vidaMaxima;
+      this.vidaAtual = vidaMaxima;
+      this.velocidade = velocidade;
+      this.ataque = ataque;
+      this.defesa = defesa;
+      this.armadura = armadura;
+   }
 
-   public abstract boolean agredir(Entidade e, int dano);
+   public abstract boolean agredir(Entidade e);
    
    public String recuperarArmadura()
    {
-      armadura++;
-      return "Armadura recuperada";
-   }
-   public String recuperarArmadura(int valor)
-   {
-      armadura += valor;
+      armadura += 3;
       return "Armadura recuperada";
    }
 

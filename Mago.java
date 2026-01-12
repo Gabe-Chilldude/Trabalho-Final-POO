@@ -1,24 +1,17 @@
 public class Mago extends Jogador {
-    int mana;
-    public Mago() {
-        super();
-    }
+
+    private int mana;
 
     public Mago(String nome, int vidaMaxima, int velocidade, int ataque, int defesa, int armadura) {
         super(nome, vidaMaxima, velocidade, ataque, defesa, armadura);
         this.mana = 100;
     }
 
-    public String BolaDeFogo(Entidade e) {
-        int danoEspecial = ataque * 3;
-        boolean inimigoMorto = agredir(e, danoEspecial);
+    public String BoladeFogo(Entidade e) {
+        int dano = 40;
+        e.vidaAtual -= dano;
         mana -= 30;
-        if (inimigoMorto) {
-            ganharExperiencia(100);
-            return nome + " usou Bola de Fogo em " + e.nome + " causando " + danoEspecial + " de dano e o matou!";
-        } else {
-            return nome + " usou Bola de Fogo em " + e.nome + " causando " + danoEspecial + " de dano.";
-        }
+        return nome + " lançou Bola de Fogo em " + e.nome + ", causando " + dano + " de dano.";
     }
 
     public String ArmaduraArcana() {
@@ -29,13 +22,15 @@ public class Mago extends Jogador {
     }
 
     public void subirDeNivel() {
-        while (experiencia >= experienciaNecessaria) {
-            experiencia -= experienciaNecessaria;
-            nivel++;
-            experienciaNecessaria = nivel * 100;
-            ataque += 5;
-            defesa += 3;
-            vidaMaxima += 10;
+        while (getExperiencia() >= getExperienciaNecessaria()) {
+
+            reduzirExperiencia(getExperienciaNecessaria());
+            aumentarNivel();
+
+            ataque += 4;
+            defesa += 2;
+            velocidade += 2;
+            vidaMaxima += 6;
             vidaAtual = vidaMaxima;
         }
     }
