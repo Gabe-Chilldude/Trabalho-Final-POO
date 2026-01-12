@@ -1,54 +1,38 @@
-import java.util.ArrayList;
 public class Clerigo extends Jogador {
-    public int fe;
-
-    public Clerigo(String nome)  {
-       super(nome);
-       vidaMaxima = 90;
-       velocidade = 3;
-       ataque = 5;
-       defesa = 7;
-       armadura = 3;
-       fe = 100;
-    }
-
+    int fé;
     public Clerigo(String nome, int vidaMaxima, int velocidade, int ataque, int defesa, int armadura) {
         super(nome, vidaMaxima, velocidade, ataque, defesa, armadura);
-        fe = 100;
+        this.fé = 100;
     }
 
-    public String agredir(Entidade e) {
+    public boolean agredir(Entidade e) {
         return super.agredir(e);
     }
 
     public String Rezar(){
-        fe += 5 * getNivel();
-        if(fe > 100) fe = 100;
-        return nome + " rezou e recuperou fé. Fé atual: " + fe;
+        fé += 20;
+        if(fé > 100) fé = 100;
+        return nome + " rezou e recuperou fé. Fé atual: " + fé;
     }
 
     public String LuzDivina(){
         int cura = 30;
         vidaAtual += cura;
-        fe -= 25;
+        fé -= 25;
         return nome + " usou Luz Divina, recuperando " + cura + " de vida.";
     }
     
     public String ArmaduraDivina() {
         int armaduraRecuperada = 15;
         armadura += armaduraRecuperada;
-        fe -= 20;
+        fé -= 20;
         return nome + " usou Armadura Divina e recuperou " + armaduraRecuperada + " de armadura.";
     }
 
-    public boolean subirDeNivel() {
-       int nivelAtual = getNivel();
+    public void subirDeNivel() {
         while (getExperiencia() >= getExperienciaNecessaria()) {
 
             reduzirExperiencia(getExperienciaNecessaria());
-            if(getNivel() == 10)  {
-               return false;
-            }
             aumentarNivel();
 
             ataque += 4;
@@ -57,6 +41,5 @@ public class Clerigo extends Jogador {
             vidaMaxima += 6;
             vidaAtual = vidaMaxima;
         }
-        return nivelAtual != getNivel();
     }
 }
