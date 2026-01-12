@@ -26,7 +26,7 @@ public abstract class Entidade {
       this.armadura = armadura;
    }
 
-   public abstract boolean agredir(Entidade e);
+   public abstract String agredir(Entidade e);
    
    public String recuperarArmadura()
    {
