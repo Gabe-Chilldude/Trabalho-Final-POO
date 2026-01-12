@@ -7,11 +7,11 @@ public class Encontro {
    public int turnoAtual;
    public boolean jogadorComeca;
    // Ações do inimigo
-   private ArrayList<int> inimigoAcoes;
+   private ArrayList<Integer> inimigoAcoes;
    private int numeroAcoes;
    private int contadorAcoes;
 
-   private void escolherAcao(Entidade e, opc)  {
+   private void escolherAcao(Entidade e, int opc)  {
    }
 
    public void iniciarEncontro()  {
@@ -23,9 +23,9 @@ public class Encontro {
    public void passarTurno(int opc)  {
       if(jogadorComeca)  {
          escolherAcao(jogador, opc);
-         escolherAcao(inimigo, inimigoAcoes[contadorAcoes]);
+         escolherAcao(inimigo, inimigoAcoes.get(contadorAcoes));
       } else  {
-         escolherAcao(inimigo, inimigoAcoes[contadorAcoes]);
+         escolherAcao(inimigo, inimigoAcoes.get(contadorAcoes));
          escolherAcao(jogador, opc);
       }
 
